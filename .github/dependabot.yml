@@ -1,0 +1,67 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/base"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
+    pull-request-branch-name:
+      separator: "-"
+    reviewers:
+      - "UKHomeOffice/hocs-core"
+    labels:
+      - "skip-release"
+      - "dependencies"
+  - package-ecosystem: "docker"
+    directory: "/base-build"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
+    pull-request-branch-name:
+      separator: "-"
+    reviewers:
+      - "UKHomeOffice/hocs-core"
+    labels:
+      - "skip-release"
+      - "dependencies"
+  - package-ecosystem: "docker"
+    directory: "/libreoffice-base"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
+    pull-request-branch-name:
+      separator: "-"
+    reviewers:
+      - "UKHomeOffice/hocs-core"
+    labels:
+      - "skip-release"
+      - "dependencies"
+  - package-ecosystem: "docker"
+    directory: "/libreoffice-base-build"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
+    pull-request-branch-name:
+      separator: "-"
+    reviewers:
+      - "UKHomeOffice/hocs-core"
+    labels:
+      - "skip-release"
+      - "dependencies"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
+    pull-request-branch-name:
+      separator: "-"
+    reviewers:
+      - "UKHomeOffice/hocs-core"
+    labels:
+      - "skip-release"
+      - "dependencies"
