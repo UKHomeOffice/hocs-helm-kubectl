@@ -2,7 +2,7 @@ FROM alpine:3.16
 
 RUN apk -U upgrade && apk add --no-cache ca-certificates git bash curl jq
 
-ARG KUBECTL_VERSION="v1.22.15"
+ARG KUBECTL_VERSION="v1.20.15"
 ARG KUBECTL_SHA256="239a48f1e465ecfd99dd5e3d219066ffea7bbd4cdedb98524e82ff11fd72ba12"
 RUN set -x && \
     curl --retry 5 --retry-connrefused -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
@@ -24,7 +24,6 @@ RUN set -x && \
     rm ${HELM_FILENAME} && rm -r /linux-amd64
 
 RUN helm plugin install https://github.com/databus23/helm-diff --version v3.6.0
-
 
 ARG HELMFILE_VERSION="0.147.0"
 ARG HELMFILE_SHA256="7d15a4441c4be8edd9dc86ade33b38bf24aa6e9e9dff3ca3c253db7787e97506"
