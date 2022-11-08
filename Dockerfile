@@ -3,7 +3,7 @@ FROM alpine:3.16
 RUN apk -U upgrade && apk add --no-cache ca-certificates git bash curl jq
 
 ARG KUBECTL_VERSION="v1.20.15"
-ARG KUBECTL_SHA256="239a48f1e465ecfd99dd5e3d219066ffea7bbd4cdedb98524e82ff11fd72ba12"
+ARG KUBECTL_SHA256="d283552d3ef3b0fd47c08953414e1e73897a1b3f88c8a520bb2e7de4e37e96f3"
 RUN set -x && \
     curl --retry 5 --retry-connrefused -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     sha256sum kubectl | grep ${KUBECTL_SHA256} && \
