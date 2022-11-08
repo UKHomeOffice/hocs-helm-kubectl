@@ -1,7 +1,7 @@
-# Hocs-Base-Image
+# Hocs-Helm-Kubectl
  
 Docker image for CI/CD pipelines on DECS.
 
-Contains Helm, Helmfile, Git, Kubectl
+Contains Git, Curl, Helm, Helmfile, Kubectl
 
 Published to https://quay.io/repository/ukhomeofficedigital/hocs-helm-kubectl
