@@ -13,3 +13,16 @@ updates:
     labels:
       - "skip-release"
       - "dependencies"
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
+    pull-request-branch-name:
+      separator: "-"
+    reviewers:
+      - "UKHomeOffice/hocs-core"
+    labels:
+      - "patch"
+      - "dependencies"
