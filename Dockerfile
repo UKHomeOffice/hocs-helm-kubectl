@@ -1,17 +1,17 @@
-FROM alpine:3.18
+FROM alpine:3.24
 
 RUN apk -U upgrade && apk add --no-cache ca-certificates git bash curl jq
 
-ARG KUBECTL_VERSION="v1.20.15"
-ARG KUBECTL_SHA256="d283552d3ef3b0fd47c08953414e1e73897a1b3f88c8a520bb2e7de4e37e96f3"
+ARG KUBECTL_VERSION="v1.36.1"
+ARG KUBECTL_SHA256="629d3f410e09bf49b64ae7079f7f0bda1191efed311f7d37fdbab0ad5b0ec2b7"
 RUN set -x && \
     curl --retry 5 --retry-connrefused -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     sha256sum kubectl | grep ${KUBECTL_SHA256} && \
     chmod +x kubectl && \
     mv kubectl /usr/local/bin/kubectl
 
-ARG HELM_VERSION="v3.10.1"
-ARG HELM_SHA256="c12d2cd638f2d066fec123d0bd7f010f32c643afdf288d39a4610b1f9cb32af3"
+ARG HELM_VERSION="v4.2.2"
+ARG HELM_SHA256="9adafecab4d406853bba163a70e9f104f47dbbf65ce24b7653bae7e36150bcb6"
 ARG HELM_LOCATION="https://get.helm.sh"
 ARG HELM_FILENAME="helm-${HELM_VERSION}-linux-amd64.tar.gz"
 
@@ -23,10 +23,10 @@ RUN set -x && \
     tar zxvf ${HELM_FILENAME} && mv /linux-amd64/helm /usr/local/bin/ && \
     rm ${HELM_FILENAME} && rm -r /linux-amd64
 
-RUN helm plugin install https://github.com/databus23/helm-diff --version v3.6.0
+RUN helm plugin install https://github.com/databus23/helm-diff --version v3.15.10 --verify=false
 
-ARG HELMFILE_VERSION="0.147.0"
-ARG HELMFILE_SHA256="7d15a4441c4be8edd9dc86ade33b38bf24aa6e9e9dff3ca3c253db7787e97506"
+ARG HELMFILE_VERSION="1.6.0"
+ARG HELMFILE_SHA256="44c617bc12b5f7f1ca1da5333ccbd3865b314c132168b4ce1127f47e756008dc"
 ARG HELMFILE_LOCATION="https://github.com/helmfile/helmfile/releases/download/v${HELMFILE_VERSION}"
 ARG HELMFILE_FILENAME="helmfile_${HELMFILE_VERSION}_linux_amd64.tar.gz"
 
@@ -40,4 +40,4 @@ RUN set -x && \
 
 RUN chmod 751 /root
 
-CMD bash
+CMD ["bash"]
