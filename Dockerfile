@@ -1,6 +1,6 @@
 FROM alpine:3.24
 
-RUN apk -U upgrade && apk add --no-cache ca-certificates git bash curl jq
+RUN apk -U upgrade && apk add --no-cache ca-certificates git bash curl jq postgresql18-client
 
 ARG KUBECTL_VERSION="v1.36.1"
 ARG KUBECTL_SHA256="629d3f410e09bf49b64ae7079f7f0bda1191efed311f7d37fdbab0ad5b0ec2b7"
