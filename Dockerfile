@@ -1,6 +1,6 @@
 FROM alpine:3.24
 
-RUN apk -U upgrade && apk add --no-cache ca-certificates git bash curl jq postgresql18-client
+RUN apk -U upgrade && apk add --no-cache ca-certificates git bash curl jq yq postgresql18-client
 
 ARG KUBECTL_VERSION="v1.36.1"
 ARG KUBECTL_SHA256="629d3f410e09bf49b64ae7079f7f0bda1191efed311f7d37fdbab0ad5b0ec2b7"
@@ -37,6 +37,19 @@ RUN set -x && \
     echo Extracting ${HELMFILE_FILENAME}... && \
     tar zxvf ${HELMFILE_FILENAME} && mv /helmfile /usr/local/bin/ && \
     rm ${HELMFILE_FILENAME}
+
+ARG DRONE_VERSION="1.9.0"
+ARG DRONE_SHA256="9a9b8a254829edbce4fd3a895d6338fc59164a5a6b78a3d945120c4ff6963f3b"
+ARG DRONE_LOCATION="https://github.com/harness/drone-cli/releases/download/v${DRONE_VERSION}"
+ARG DRONE_FILENAME="drone_linux_amd64.tar.gz"
+
+RUN set -x && \
+    curl --retry 5 --retry-connrefused -LO ${DRONE_LOCATION}/${DRONE_FILENAME} && \
+    echo Verifying ${DRONE_FILENAME}... && \
+    sha256sum ${DRONE_FILENAME} | grep -q "${DRONE_SHA256}" && \
+    echo Extracting ${DRONE_FILENAME}... && \
+    tar zxvf ${DRONE_FILENAME} && mv /drone /usr/local/bin/ && \
+    rm ${DRONE_FILENAME}
 
 RUN chmod 751 /root
 
